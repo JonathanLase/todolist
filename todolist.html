@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-icons.css">
+    <title>To Do List APP</title>
+	<style>
+		.btn{
+			margin-right: 19px;
+			margin-top: 3px;
+		}
+
+		.head{
+			border: 2px solid black;
+			background-color: cadetblue;
+		}
+		.conten{
+			border: 2px solid black;
+			background-color:white;
+		}
+
+		.row hr{
+			height: 2px;
+			background-color: black;
+		}
+		.col-7{
+			margin-left: 23px;
+		}
+
+		.mtodo{
+			font-size: 20px;
+		}
+		
+	</style>
+  </head>
+  <body class="mt-5" style="background-color:antiquewhite; background-position: cover;">
+	<div class="container">
+		<div class="head rounded-top">
+		<div class="row justify-content-around mt-4">
+			<div class="col-7">
+			<h2>To Do List</h2>
+			</div>
+			<div class="col-2 mb-3">
+			<div class="btn btn-dark">
+				<i class="bi bi-search"></i>
+			</div>
+			<div class="btn btn-dark">
+				<i class="bi bi-list"></i>
+			</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col">
+				<hr class="my-4">
+			</div>
+			<div class="col-2 mb-4">
+				<div id="btn-plus" class="btn btn-dark"
+						data-toggle="modal" 
+						data-target="#exampleModal"
+						>
+					<i class="bi bi-plus-circle"></i>
+				</div>
+			</div>
+		</div>
+		</div>	
+	</div>
+	<div class="container">	
+	<div class="conten rounded-bottom">
+		<h4 class="mt-3 ml-5">Today</h4>
+		<div id="daftar">
+		<div class="alert alert-success clearfix mt-3 mr-5 ml-5" role="alert">
+			<div class="float-left mt-2">
+				<i class="mtodo bi bi-check-square" style="display: none;"></i>
+				<i class="mtodo bi bi-square"></i>
+			</div>
+			<div class="float-left mt-2 ml-2">Kerja</div> 
+			<div class="float-right btn btn-dark"><i class="bi bi-trash"></i></div> 	
+		</div>
+		<div class="alert alert-success clearfix mt-3 mr-5 ml-5" role="alert">
+			<div class="float-left mt-2">
+				<i class="mtodo bi bi-check-square" style="display: none;"></i>
+				<i class="mtodo bi bi-square"></i>
+			</div>
+			<div class="float-left mt-2 ml-2">Kerja</div> 
+			<div class="float-right btn btn-dark"><i class="bi bi-trash"></i></div> 
+		</div>
+		<div class="alert alert-success clearfix mt-3 mr-5 ml-5 mb-3" role="alert">
+			<div class="float-left mt-2">
+				<i class="mtodo bi bi-check-square" style="display: none;"></i>
+				<i class="mtodo bi bi-square"></i>
+			</div>
+			<div class="float-left mt-2 ml-2">Kerja</div> 
+			<div class="float-right btn btn-dark"><i class="bi bi-trash"></i></div> 
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<!-- Ini Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content" style="background-color: rgb(102, 141, 185)">
+			<div class="modal-header">
+			  	<h5 class="modal-title" id="exampleModalLabel">
+				  Add a new task
+				</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="todo1">A Task</label>
+					<input type="text" class="form-control" 
+					id="todo1">
+				</div>
+				<div class="custom-control custom-radio">
+					<input type="radio" name="group" id="customRadio1" class="custom-control-input" value="alert-danger">
+					<label class="custom-control-label" for="customRadio1" style="color: red;"><b>Urgent</b></label>
+				</div>
+				<div class="custom-control custom-radio">
+					<input type="radio" name="group" id="customRadio2" class="custom-control-input" value="alert-warning">
+					<label class="custom-control-label" for="customRadio2" style="color: orange;"><b>Important</b></label>
+				</div>
+				<div class="custom-control custom-radio">
+					<input type="radio" name="group" id="customRadio3" class="custom-control-input" value="alert-success">
+					<label class="custom-control-label" for="customRadio3" style="color: green;"><b>Normal</b></label>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <button type="button" class="btn btn-primary" id="btn-save">Save</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+	<!-- ini adalah card -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script>
+		$(function() {
+        $('#btn-save').click(function() {
+            var todo = '<div class="alert '
+            todo += $('input[name="group"]:checked').val()
+            todo += ' clearfix mt-3 mr-5 ml-5" role="alert">'
+
+			todo += '<div class="float-left mt-2">'
+			todo +=	'<i class="mtodo bi bi-check-square" style="display: none;"></i>'
+			todo +=	'<i class="mtodo bi bi-square"></i>'
+			todo += '</div>'
+            todo += '<div class="float-left mt-2 ml-2">'
+            todo += $('#todo1').val()
+            todo += '</div>'
+            todo += '<div class="float-right btn btn-dark">'
+            todo += '<i class="bi bi-trash"></i>'
+            todo += '</div>'
+            todo += '</div>'
+            $('#daftar').append(todo);
+            $('#exampleModal').modal('hide')
+        })
+
+			$('#daftar').on('click','.mtodo',function(){				
+				if($(this).hasClass('bi-square')){
+					$(this).hide();
+					$(this).parent('div').find('.bi-check-square').show();
+				}
+				else{
+					$(this).hide();
+					$(this).parent('div').find('.bi-square').show();
+				}
+			})
+
+			$('#daftar').on('click','.btn',function(){
+				var parent_saya = $(this).parent('.alert');
+				$(parent_saya).remove();
+			})
+		})
+		
+	</script>
+  </body>
+</html>
+
+
